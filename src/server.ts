@@ -3,7 +3,10 @@ import express from "express";
 import { categoriesRoutes } from "./routes/categories.routes";
 
 const app = express();
+const port = 3000;
+
 app.use(express.json());
+
 app.use("/categories", categoriesRoutes);
 
-app.listen(80, () => console.log("Server rodando na porta 80"));
+app.listen(port, () => console.log(`Server running at ${port}`));

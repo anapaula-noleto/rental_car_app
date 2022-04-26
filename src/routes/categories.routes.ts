@@ -1,24 +1,25 @@
 import { Router } from "express";
-import { v4 as uuidv4 } from "uuid";
 
-import { Category } from "../model/categorymodel";
+// import { Category } from "../model/Category";
+import { CategoriesRepository } from "../repositories/CategoriesRepository";
+import { CreateCategoryService } from "../services/CreateCategoryService";
 
 const categoriesRoutes = Router();
-
-const categories: Category[] = [];
-
+const categoriesRepository = new CategoriesRepository();
+// Rotas servem para receber a requisição, chamar um serviço e retornar a informação
+// SÓ ISSO
 categoriesRoutes.post("/", (req, res) => {
-    const { name, description } = req.body;
+	const { name, description } = req.body;
+	const createCategoryService = new CreateCategoryService(
+		categoriesRepository
+	);
+	createCategoryService.execute({ name, description });
+	return res.status(201).send();
+});
 
-    const category: Category = {
-        id: uuidv4(),
-        name,
-        description,
-        created_at: new Date(),
-    };
-
-    categories.push(category);
-    return res.status(201).send();
+categoriesRoutes.get("/", (req, res) => {
+	const categories = categoriesRepository.list();
+	return res.json(categories);
 });
 
 // exportando a rota
