@@ -6,7 +6,7 @@ import swaggerFile from "./swagger.json";
 import "./database";
 
 const app = express();
-const port = 3000;
+const port = 3333;
 // o nome da rota que vai ficar a documentação será api-docs
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
