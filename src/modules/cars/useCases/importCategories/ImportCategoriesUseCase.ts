@@ -1,6 +1,8 @@
-//importando o fs - file system module
-import fs from "fs";
+// importando o fs - file system module
 import { parse as csvParse } from "csv-parse";
+import fs from "fs";
+import { inject, injectable } from "tsyringe";
+
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IImportCategory {
@@ -8,16 +10,20 @@ interface IImportCategory {
 	description: string;
 }
 
+@injectable()
 class ImportCategoriesUseCase {
-	constructor(private categoriesRepository: ICategoriesRepository) {}
+	constructor(
+		@inject("CategoriesRepository")
+		private categoriesRepository: ICategoriesRepository
+	) {}
 
 	loadCategories(file: Express.Multer.File): Promise<IImportCategory[]> {
 		return new Promise((resolve, reject) => {
 			const stream = fs.createReadStream(file.path);
 			const categories: IImportCategory[] = [];
 
-			//pipe -> pega o que está dentro de stream e coloca em outro lugar
-			//initialize the parser
+			// pipe -> pega o que está dentro de stream e coloca em outro lugar
+			// initialize the parser
 			const parseFile = csvParse();
 			stream.pipe(parseFile);
 
