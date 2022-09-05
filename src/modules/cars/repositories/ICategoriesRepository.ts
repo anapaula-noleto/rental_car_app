@@ -1,4 +1,4 @@
-import { Category } from "../entities/Category";
+import { Category } from "../../entities/Category";
 
 // DTO => data transfer object.
 // Um objeto responsável por fazer a transferência de dados entre diferentes classes.

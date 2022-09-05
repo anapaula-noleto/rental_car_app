@@ -1,11 +1,16 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
+import {
+	Column,
+	CreateDateColumn,
+	Entity,
+	PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Entity("categories")
 class Category {
 	// a interrogação avisa que o parâmetro é opcional
-	@PrimaryColumn()
-	id?: string;
+
+	@PrimaryGeneratedColumn("uuid")
+	id: string;
 
 	@Column()
 	name: string;
@@ -15,12 +20,6 @@ class Category {
 
 	@CreateDateColumn()
 	created_at: Date;
-
-	constructor() {
-		if (!this.id) {
-			this.id = uuidv4();
-		}
-	}
 }
 
 export { Category };

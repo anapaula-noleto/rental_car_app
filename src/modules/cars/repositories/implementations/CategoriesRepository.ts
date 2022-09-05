@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import { getRepository, Repository } from "typeorm";
 
-import { Category } from "../../entities/Category";
+import { Category } from "../../../entities/Category";
 import {
 	ICategoriesRepository,
 	ICreateCategoryDTO,
@@ -22,6 +22,8 @@ class CategoriesRepository implements ICategoriesRepository {
 			description,
 			name,
 		});
+
+		console.log("-----------------", category);
 
 		await this.repository.save(category);
 	}

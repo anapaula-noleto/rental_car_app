@@ -10,6 +10,8 @@
 	],
 	"entities": ["./src/modules/**/entities/*.ts"],
 	"cli": {
-		"migrationsDir": "./src/database/migrations"
-	}
+		"migrationsDir": "./src/database/migrations",
+		"entitiesDir": "./src/modules/entities"
+	},
+	"logging":true
 }
