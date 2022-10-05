@@ -13,9 +13,6 @@ export class User {
 	@Column()
 	name: string;
 
-	@Column({ unique: true })
-	username: string;
-
 	@Column()
 	password: string;
 
@@ -28,7 +25,7 @@ export class User {
 	@Column("boolean", { default: false, name: "is_admin" })
 	isAdmin: boolean;
 
-	@Column()
+	@Column({ nullable: true })
 	avatar: string;
 
 	@CreateDateColumn({ name: "created_at" })
