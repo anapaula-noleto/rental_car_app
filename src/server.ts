@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import express, { Request, Response, NextFunction } from "express";
 import "express-async-errors";
-import swaggerUi from "swagger-ui-express";
+import { serve, setup } from "swagger-ui-express";
+import * as YAML from "yamljs";
 
 import { AppError } from "./errors/AppError";
 import { router } from "./routes";
-import swaggerFile from "./swagger.json";
 import "./database";
 import "./shared/container";
 
@@ -14,7 +14,7 @@ const app = express();
 const port = 3333;
 // o nome da rota que vai ficar a documentação será api-docs
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use("/api-docs", serve, setup(YAML.load("src/swagger.yml")));
 
 app.use(express.json());
 

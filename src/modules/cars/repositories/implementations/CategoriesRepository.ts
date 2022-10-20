@@ -23,8 +23,6 @@ class CategoriesRepository implements ICategoriesRepository {
 			name,
 		});
 
-		console.log("-----------------", category);
-
 		await this.repository.save(category);
 	}
 
