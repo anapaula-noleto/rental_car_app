@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppError";
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
-interface IRequest {
+export interface IRequest {
 	name: string;
 	description: string;
 }
