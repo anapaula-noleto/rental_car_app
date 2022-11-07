@@ -1,13 +1,14 @@
-import "reflect-metadata";
-import express, { Request, Response, NextFunction } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
+import "reflect-metadata";
 import { serve, setup } from "swagger-ui-express";
 import * as YAML from "yamljs";
 
-import { AppError } from "./errors/AppError";
+import "@shared/container";
+import { AppError } from "@shared/errors/AppError";
+import "@shared/infra/typeorm";
+
 import { router } from "./routes";
-import "./database";
-import "./shared/container";
 
 const app = express();
 

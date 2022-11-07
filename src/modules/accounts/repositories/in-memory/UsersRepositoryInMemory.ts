@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 
-import { User } from "../../../entities/User";
 import { ICreateUserDTO } from "../../dtos/ICreateUserDto";
+import { User } from "../../infra/typeorm/entities/User";
 import { IUsersRepository } from "../IUsersRepository";
 
 export class UsersRepositoryInMemory implements IUsersRepository {
