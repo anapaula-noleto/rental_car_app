@@ -39,6 +39,9 @@ export class Car {
 	@JoinColumn({ name: "category_id" })
 	category: Category;
 
+	@Column()
+	category_id: string;
+
 	@CreateDateColumn()
 	created_at: Date;
 }
